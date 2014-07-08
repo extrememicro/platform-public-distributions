@@ -1,5 +1,5 @@
 ====
-    Copyright (C) 2003-2013 eXo Platform SAS.
+    Copyright (C) 2003-2014 eXo Platform SAS.
 
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License as
@@ -19,7 +19,7 @@
 
 Thank you for downloading eXo Platform ${org.exoplatform.platform.version}.
 
-Follow the installation procedure and start eXo Platform 4 now!
+Follow the installation procedure and start eXo Platform 4.1 now!
 
 ------------------------------
 System requirements
@@ -34,13 +34,26 @@ System requirements
     * The eXo server will run on port 8080, make sure this port is not currently in use
 
 -------------------------------------
-How to start the Platform
+How to start the Platform Tomcat
 -------------------------------------
 
     * PLF_HOME is the location of the unzipped eXo Platform server.
     * On Windows: Open a DOS prompt command, go to PLF_HOME directory and type the command: "start_eXo.bat"
     * On Linux: Open a terminal, go to PLF_HOME directory and type the command: "./start_eXo.sh"
 
+------------------------------------
+How to start the Platform Jboss (*)
+------------------------------------
+
+    * PLF_JBOSS_HOME is the location of JBoss EAP 6.2.0
+    * Extract eXo Platform Jboss package
+    * Copy all the extracted folders and files into PLF_JBOSS_HOME.
+    * On Windows: Open a DOS prompt command, go to PLF_JBOSS_HOME directory and type the command: "bin\standalone.bat"
+    * On Linux: Open a terminal, go to PLF_JBOSS_HOME directory and type the command: "./bin/standalone.sh"
+
+(*) only available for Enterprise edition.
+
+For more configurations, please check http://docs.exoplatform.com/PLF41/PLFAdministratorGuide.html
 
 ----------------------------------------------------------
 How to access the Platform homepage
@@ -60,7 +73,7 @@ Several extensions are not installed by default in the Express and Enterprise ve
     * crash	: Common Reusable SHell to interact with the JVM
     * acme (*)	: A demo website built with eXo Platform 4 (cf. next section for its usage)
     * cmis (*)	: Content Management Interoperability Services 
-    * ide (*)	: Integrated development environment to develop applications online 
+    * ide (*)	: Integrated online environment to develop applications (cf. next section for its usage)
     * wai (*)	: A demo website following Accessibility standards 
 
 On Windows, Open a DOS prompt command, go to PLF_HOME directory and type the command:
@@ -86,12 +99,26 @@ When eXo Platform server is already started and you would like to install acme e
 ** Use configuration.properties:
   In this file, you uncomment the line of this parameter
 ** Use customization configuration script:
-  When you use the sample configuration script provided inside eXo Platform 4.0, you can uncomment this variable in the script.
-  Please refer to "Customizing environment variables in Tomcat" or "Installing JBoss EAP" in Platform 4.0 Administration guide for more details of these scripts.
+  When you use the sample configuration script provided inside eXo Platform 4.1, you can uncomment this variable in the script.
+  Please refer to "Customizing environment variables in Tomcat" or "Installing JBoss EAP" in Platform 4.1 Administration guide for more details of these scripts.
 * Restart eXo Platform server.
 * Stop eXo Platform server.
 * Set the variable "acme.portalConfig.metadata.override" as false or comment again the corresponding line of this variable.
 * Start eXo Platform server again to continue using it.
+
+----------------------------------------------------------------
+Exclusion of the IDE item from Administration drop-down menu
+----------------------------------------------------------------
+
+When eXo Platform server integrates the ide extension and you would like to exclude the IDE item from Administration drop-down menu, follow the steps below:
+* Stop eXo Platform server
+* Set the variable "ide.portalConfig.metadata.override" as false . This can be done by one of the two ways:
+** Use configuration.properties:
+  In this file, you uncomment the line of this parameter
+** Use customization configuration script:
+  When you use the sample configuration script provided inside eXo Platform 4.1, you can uncomment this variable in the script.
+  Please refer to "Customizing environment variables in Tomcat" or "Installing JBoss EAP" in Platform 4.1 Administration guide for more details of these scripts.
+* Restart eXo Platform server.
 
 ------------------
 eXo Resources

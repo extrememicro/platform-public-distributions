@@ -24,7 +24,7 @@
   <parent>
     <artifactId>maven-parent-pom</artifactId>
     <groupId>org.exoplatform</groupId>
-    <version>12</version>
+    <version>13</version>
     <relativePath />
   </parent>
   <groupId>org.exoplatform.platform.distributions</groupId>
@@ -43,6 +43,7 @@
     <module>plf-tomcat-integration-webapp</module>
     <module>plf-tomcat-pc-creator-listener</module>
     <module>plf-tomcat-resources</module>
+    <module>plf-community-sources</module>
   </modules>
   <scm>
     <connection>scm:git:git://github.com/exoplatform/platform-public-distributions.git</connection>
@@ -64,17 +65,19 @@
     <!-- **************************************** -->
     <!-- The version of Platform To bundle -->
     <org.exoplatform.platform.version>4.1.x-plf-skin-module-SNAPSHOT</org.exoplatform.platform.version>
+    <!-- The version of the add-ons manager -->
+    <org.exoplatform.platform.addons-manager.version>1.0.0-RC1</org.exoplatform.platform.addons-manager.version>
     <!-- The apache tomcat version to bundle -->
-    <org.apache.tomcat.version>7.0.42</org.apache.tomcat.version>
+    <org.apache.tomcat.version>7.0.54</org.apache.tomcat.version>
     <!-- CRaSH -->
     <org.crsh.version>1.2.6</org.crsh.version>
     <!-- SLF4J version to use to wrap all loggers in our product and its dependencies -->
-    <org.slf4j.version>1.7.5</org.slf4j.version>
+    <org.slf4j.version>1.7.7</org.slf4j.version>
     <!-- LOGBACK implementation to use to manage logs -->
-    <ch.qas.logback.version>1.0.11</ch.qas.logback.version>
+    <ch.qas.logback.version>1.1.2</ch.qas.logback.version>
     <!-- Additional LOGBACK dependencies -->
     <org.codehaus.janino.version>2.6.1</org.codehaus.janino.version>
-    <org.fusesource.jansi.version>1.9</org.fusesource.jansi.version>
+    <org.fusesource.jansi.version>1.11</org.fusesource.jansi.version>
     <!-- ************** -->
     <!-- Build settings -->
     <!-- ************** -->
@@ -83,14 +86,6 @@
   </properties>
   <dependencyManagement>
     <dependencies>
-      <!-- Import versions from platform project -->
-      <dependency>
-        <groupId>org.exoplatform.platform</groupId>
-        <artifactId>platform</artifactId>
-        <version>${org.exoplatform.platform.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
       <!-- Logging implementation : http://logback.qos.ch/ -->
       <dependency>
         <groupId>ch.qos.logback</groupId>
@@ -122,7 +117,28 @@
         <artifactId>janino</artifactId>
         <version>${org.codehaus.janino.version}</version>
       </dependency>
-      <!-- Project modules -->
+      <dependency>
+        <groupId>org.exoplatform.platform</groupId>
+        <artifactId>addons-manager</artifactId>
+        <version>${org.exoplatform.platform.addons-manager.version}</version>
+        <type>zip</type>
+      </dependency>
+      <!-- Import versions from platform project -->
+      <dependency>
+        <groupId>org.exoplatform.platform</groupId>
+        <artifactId>platform</artifactId>
+        <version>${org.exoplatform.platform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- Project artifacts -->
+      <dependency>
+        <groupId>org.exoplatform.platform.distributions</groupId>
+        <artifactId>plf-public-distributions</artifactId>
+        <version>${project.version}</version>
+        <classifier>source-release</classifier>
+        <type>zip</type>
+      </dependency>
       <dependency>
         <groupId>org.exoplatform.platform.distributions</groupId>
         <artifactId>plf-assemblies</artifactId>
@@ -152,6 +168,12 @@
         <version>${project.version}</version>
         <type>zip</type>
       </dependency>
+      <!-- Extensions Manager -->
+      <dependency>
+        <groupId>org.exoplatform.platform.distributions</groupId>
+        <artifactId>plf-extensions-manager</artifactId>
+        <version>${project.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.exoplatform.platform.distributions</groupId>
         <artifactId>plf-packaging-resources</artifactId>
@@ -175,12 +197,6 @@
         <artifactId>plf-root-webapp</artifactId>
         <version>${project.version}</version>
         <type>war</type>
-      </dependency>
-      <!-- Extensions Manager -->
-      <dependency>
-        <groupId>org.exoplatform.platform.distributions</groupId>
-        <artifactId>plf-extensions-manager</artifactId>
-        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.exoplatform.platform.distributions</groupId>

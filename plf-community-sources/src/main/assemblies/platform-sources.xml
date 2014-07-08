@@ -1,6 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <!--
 
-    Copyright (C) 2003-2013 eXo Platform SAS.
+    Copyright (C) 2003-2014 eXo Platform SAS.
 
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License as
@@ -20,21 +21,19 @@
 -->
 <assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
-  <id>plf-standalone-community-tomcat-distribution-content</id>
+  <id>platform-sources</id>
   <formats>
-    <format>dir</format>
+    <format>zip</format>
   </formats>
-  <includeBaseDirectory>true</includeBaseDirectory>
-  <baseDirectory>${project.build.finalName}</baseDirectory>
+  <baseDirectory>platform-sources-${project.version}</baseDirectory>
   <dependencySets>
-    <!-- GateIn Mobile web site redirection -->
+    <!-- others projects sources -->
     <dependencySet>
-      <outputDirectory>webapps</outputDirectory>
+      <outputDirectory>/</outputDirectory>
       <includes>
-        <include>org.gatein.portal.portlet:redirect:war</include>
+        <include>*:*:zip</include>
       </includes>
-      <scope>provided</scope>
-      <outputFileNameMapping>redirect-portlet.war</outputFileNameMapping>
+      <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
   </dependencySets>
